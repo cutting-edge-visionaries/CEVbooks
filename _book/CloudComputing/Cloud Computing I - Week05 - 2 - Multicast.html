@@ -1,0 +1,762 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Multicast · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Cloud Computing I - Week05 - 3 - Paxos.html" />
+    
+    
+    <link rel="prev" href="Cloud Computing I - Week05 - 1 - Snapshots.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Cloud Computing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week01
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+            
+                <a href="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+            
+                    
+                    Basic Fundamentals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html">
+            
+                <a href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html">
+            
+                    
+                    Introduction to Clouds
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html">
+            
+                <a href="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html">
+            
+                    
+                    Clouds and Distributed Systems
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.4" data-path="Cloud Computing I - Week01 - 3 - MapReduce.html">
+            
+                <a href="Cloud Computing I - Week01 - 3 - MapReduce.html">
+            
+                    
+                    MapReduce
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week02
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="Cloud Computing I - Week02 - 1 - Gossip.html">
+            
+                <a href="Cloud Computing I - Week02 - 1 - Gossip.html">
+            
+                    
+                    Gossip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="Cloud Computing I - Week02 - 2 - Membership.html">
+            
+                <a href="Cloud Computing I - Week02 - 2 - Membership.html">
+            
+                    
+                    Membership
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.3" data-path="Cloud Computing I - Week02 - 3 - Grids.html">
+            
+                <a href="Cloud Computing I - Week02 - 3 - Grids.html">
+            
+                    
+                    Grids
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week03
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="Cloud Computing I - Week03 - 1 - P2P Systems.html">
+            
+                <a href="Cloud Computing I - Week03 - 1 - P2P Systems.html">
+            
+                    
+                    P2P Systems
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week04
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="Cloud Computing I - Week04 - 1 - Key-Value stores.html">
+            
+                <a href="Cloud Computing I - Week04 - 1 - Key-Value stores.html">
+            
+                    
+                    Key-Value Stores
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
+            
+                <a href="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
+            
+                    
+                    Time & Ordering
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week05
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1" data-path="Cloud Computing I - Week05 - 1 - Snapshots.html">
+            
+                <a href="Cloud Computing I - Week05 - 1 - Snapshots.html">
+            
+                    
+                    Snapshots
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.5.2" data-path="Cloud Computing I - Week05 - 2 - Multicast.html">
+            
+                <a href="Cloud Computing I - Week05 - 2 - Multicast.html">
+            
+                    
+                    Multicast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.3" data-path="Cloud Computing I - Week05 - 3 - Paxos.html">
+            
+                <a href="Cloud Computing I - Week05 - 3 - Paxos.html">
+            
+                    
+                    Paxos
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Multicast</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="multicast">Multicast</h2>
+<h3 id="multicast-ordering">Multicast ordering</h3>
+<ul>
+<li>used by storage systems like Cassandara or a Database<ul>
+<li>Replica servers for a key: writes/reads to the key are multicast within the replica group</li>
+<li>All servers: membership inforation (e.g. Heartbeats) is multicast across all servers in cluster</li>
+</ul>
+</li>
+<li>Online Scoreboards</li>
+<li>Stock Exchanges<ul>
+<li>Group is a set of Broker computers</li>
+<li>Groups of computers for High Freq Trading</li>
+</ul>
+</li>
+<li>Air Traffic Control System<ul>
+<li>all controllers need to receive the same updates in the same order </li>
+</ul>
+</li>
+</ul>
+<h4 id="fifo-ordering">FIFO Ordering</h4>
+<ul>
+<li>only cares about message sent by one process and doesn&apos;t care about other processes</li>
+</ul>
+<h4 id="causal-ordering">Causal Ordering</h4>
+<ul>
+<li>Multicasts whose send events ae causally related, must be received in the same causality-obeying order at all receivers</li>
+<li>Formally<ul>
+<li><em>if multicast(g, m) -&gt; multicast(g, m&apos;), then any correct process that delivers m&apos; would already have delivered m</em></li>
+<li><em>(-&gt; is Lamport&apos;s happens-before)</em></li>
+</ul>
+</li>
+<li>Causal Ordering =&gt; FIFO</li>
+<li></li>
+</ul>
+<blockquote>
+<p>Which of the following are true of a causal multicast protocol? (select multiple correct answers)</p>
+<ul>
+<li>[x] If two multicast sends are causally related, then they are delivered in the order satisfying causality.</li>
+<li>[x] It satisfies FIFO ordering.</li>
+<li>[x] It may deliver two multicasts in different orders at recipients.</li>
+<li>[ ] It always delivers all multicasts in the same order at all recipients.</li>
+</ul>
+</blockquote>
+<h4 id="total-ordering-atomic-broadcast">Total Ordering (Atomic Broadcast)</h4>
+<ul>
+<li>doesn&apos;t pay attention to order of multicast</li>
+<li>Ensures all receivers receive all the multicasts in the same order</li>
+<li>Formally<ul>
+<li><em>If a correct process P delivers message m before m&apos; (independent of the senders), then any other correct process P&apos; that delivers m&apos; would already have delivered m</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="hybrid-variants">Hybrid Variants</h4>
+<ul>
+<li>Since FIFO/Causal are orthogonal o Total, can have hybrid ordering protocols too<ul>
+<li>FIFO-total hybrid protocol satisfies both FIFO and total orders</li>
+<li>Causal-total hybrid protocol satisfies both Causal and Total order</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="implementing-multicast-ordering-1">Implementing Multicast Ordering 1</h3>
+<h4 id="fifo">FIFO:</h4>
+<p><strong>Data Structure</strong></p>
+<ul>
+<li>Each receiver maintains a per-sender sequence number (integers)<ul>
+<li>Processes <em>P1</em> through  <em>PN</em></li>
+<li>P<sub>i</sub> maintains a vector of sequence numbers P<sub>i</sub>[1..N] (initially all zeroes)</li>
+<li>P<sub>i</sub>[j] is the latest sequence number P<sub>i</sub> has received from P<sub>j</sub></li>
+</ul>
+</li>
+</ul>
+<p><strong>Updating Rules</strong></p>
+<ul>
+<li>Send multicast at process P<sub>j</sub>:<ul>
+<li>Set P<sub>j</sub>[j] = P<sub>j</sub>[j] + 1</li>
+<li>Include new P<sub>j</sub>[j] in multicast message as its sequence no</li>
+</ul>
+</li>
+<li>Receive Multicast: if P<sub>i</sub> receives a multicast from P<sub>j</sub> with sequence no. <em>S</em> in message <ul>
+<li>if (S == P<sub>i</sub>[j] + 1) then<ul>
+<li>deliver msg to application</li>
+<li>Set P<sub>i</sub>[j] = P<sub>i</sub>[j] + 1</li>
+</ul>
+</li>
+<li>else buffer this multicast until above condition is true</li>
+</ul>
+</li>
+</ul>
+<h4 id="total-ordering">Total Ordering</h4>
+<p><strong>Sequencer-Based Approach</strong></p>
+<ul>
+<li>Special process elected as leader or sequencer</li>
+<li>Send multicast at process P<sub>i</sub>:<ul>
+<li>Send multicast msg M to group and sequencer</li>
+</ul>
+</li>
+<li>Sequencer:<ul>
+<li>Maintains a global sequence number S (initially 0)</li>
+<li>When it receives a multicast message M, it set S = S + 1, and multicasts <m,s></m,s></li>
+</ul>
+</li>
+<li>Receive multicast at process P<sub>i</sub>:<ul>
+<li>P<sub>j</sub> maintains a local received global sequence no. S<sub>i</sub> (initially 0)</li>
+<li>if P<sub>i</sub>receives a multicast M from P<sub>j</sub>, it buffer it until both <ul>
+<li><ol>
+<li>P<sub>i</sub> receives <m, s(m)=""> from sequencer, and </m,></li>
+</ol>
+</li>
+<li><ol>
+<li>S<sub>i</sub> + 1 = S(M)</li>
+</ol>
+</li>
+<li>Then deliver it msg to app and set S<sub>i</sub> = S<sub>i</sub> 1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Having the sequencer send an <m, s(m)=""> message is wasteful because M is effectively sent twice (once by sender, once by sequencer). Someone proposes a protocol where the sender of multicast M maintains a local sequence number F(M) (like FIFO) and includes this with the message M. Thereafter, the sequencer only sends <sender-process-id(m), f(m),="" s(m)=""> instead of <m, s(m)="">, and recipient processes check this. This protocol:</m,></sender-process-id(m),></m,></p>
+<ul>
+<li>[x] Satisfies total ordering</li>
+<li>[ ] Does not satisfy total ordering</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="implementing-multicast-ordering-2">Implementing Multicast Ordering 2</h3>
+<p><strong>Data Structure</strong></p>
+<ul>
+<li>Each receiver maintains a vector of per-sender sequence no<ul>
+<li>Similar to FIFO </li>
+<li>Updating rules are different</li>
+</ul>
+</li>
+</ul>
+<p><strong>Updating Rules</strong></p>
+<p><img src="../images/images05_02_01.png" alt="images05_02_01.png"></p>
+<hr>
+<h3 id="reliable-multicast">Reliable Multicast</h3>
+<ul>
+<li>loosely says that every process in the group receives all multicasts<ul>
+<li>Reliability is orthogonal to ordering </li>
+<li>Can Implement Reliable-FIFO, or Reliable-Causal, or Reliable-Total, or Reliable_hybrid protocols</li>
+</ul>
+</li>
+<li>But! What happens to the failed processes?<ul>
+<li><em>Need all correct (i.e. non-faulty) processes to receive the same set of muticasts as all other correct processes</em></li>
+<li>Faulty Processes are unpredictable, so we won&apos;t worry about them</li>
+</ul>
+</li>
+</ul>
+<h4 id="implementing-a-reliable-multicast">Implementing a Reliable multicast</h4>
+<ul>
+<li>Let&apos;s assume we have reliable unicast (TCP based) available to use</li>
+<li>First-Cut: Sender process (of each multicast M) sequentially sends a reliable unicast message to all group recipients</li>
+<li>First-Cut protocol does not satisfy reliability<ul>
+<li>If sender fails, some correct processes might receive multicast M, while other correct processes might not receive M</li>
+</ul>
+</li>
+</ul>
+<h4 id="really-implementing-reliable-multicast">REALLY implementing Reliable Multicast</h4>
+<ul>
+<li>Trick: Have receviers help the sender<ul>
+<li><ol>
+<li>Sender process (of each multicast M) sequentially sends a reliable unicast message to all group recipients</li>
+</ol>
+</li>
+<li><ol>
+<li>When receiver receives multicast M, it also sequentially sends M to all the group&apos;s processes</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>Not Efficient, but Reliable</li>
+</ul>
+<hr>
+<h3 id="virtual-synchrony">Virtual Synchrony</h3>
+<ul>
+<li>also known as view synchrony</li>
+<li>attempts to preserve multicast ordering and reliability in spite of failures</li>
+<li>combines a membership protocol with a multicast protocol</li>
+<li>Systems that implemented it(like Isis) have been used in BYSE, French Air Traffic Control System, Swiss Stock Exchange</li>
+</ul>
+<h4 id="views">Views</h4>
+<ul>
+<li>Each process maintains a membership list</li>
+<li>The membership list is called a <em>VIEW</em></li>
+<li>An update to the membership list is called a <em>View Change</em><ul>
+<li>Process Joins, leave, or failure</li>
+</ul>
+</li>
+<li>Virtual synchrony gaurantees that all <em>view change are delivered in the same order at all correct processes</em><ul>
+<li>if a correct P1 process receives views, say {p1}, {p1, p2, p3}, {p1, p2}, {p1, p2, p4} then</li>
+<li>Any other correct process receives the <em>same sequence</em> of view changes (after it joins the group)<ul>
+<li>p2 receives views {p1, p2, p3}, {p1, p2], {p1, p2, p3}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Views may be delivered at different physical times at processes, but they are delivered in the same order</li>
+</ul>
+<h4 id="vsync-multicasts">VSync Multicasts</h4>
+<ul>
+<li>multicast M is said to be &quot;delivered in a view V at process P<sub>i</sub>&quot; if <ul>
+<li>P<sub>i</sub> receives view V, and then sometime before P<sub>i</sub> receives the next view it delivers mutlicast M</li>
+</ul>
+</li>
+<li>VSync ensures that<ul>
+<li><ol>
+<li>the set of Ms delivered in a given view is the same set at all correct processes that were in that view<ul>
+<li>what happens in a View, stays in that view</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>The sender of the multicast msgs also belongs to that view</li>
+</ol>
+</li>
+<li><ol>
+<li>if a process P<sub>i</sub> does not deliver a M in view V while other processes in the view V delivered M in V, then P<sub>i</sub> will be <em>forcibly removed</em> from the next view delivered after V at the other processes</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Which of the following does view synchrony/virtual synchrony NOT care about?</p>
+<ul>
+<li>[ ] Delivering the same multicasts within each view</li>
+<li>[ ] Ensuring that when a multicast is delivered, its sender is in the same view</li>
+<li>[x] Ensuring that if a process does not deliver a multicast in a view (when others have delivered it), it has another chance to deliver the multicast in the next view</li>
+</ul>
+</blockquote>
+<h4 id="about-the-name">About the Name</h4>
+<ul>
+<li>called &apos;Virtual Sync&apos; since in spite of running on an async net, it gives the appearance of a sync net underneath that obeys the same ordering at all processes</li>
+<li>So can this virtually sync system be used to implement consensus?</li>
+<li>NO!! VSync groups are susceptible to partitioning<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIxMzQ4Njg4ODIsLTE5NDc0Nzk1OTksMT
+k1MDQ5MTczNCwxMjczOTY5NzM1LDE0MDU4NzcyODMsLTIwNTI4
+MzAzNTksLTExMzM0MjIxMTgsLTEwMzU3ODM4MTQsMTQzNTU4ND
+A2MiwtNDkyNzE2NDc5LDY3ODMxNjI1MF19
+--></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Cloud Computing I - Week05 - 1 - Snapshots.html" class="navigation navigation-prev " aria-label="Previous page: Snapshots">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Cloud Computing I - Week05 - 3 - Paxos.html" class="navigation navigation-next " aria-label="Next page: Paxos">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Multicast","level":"1.2.5.2","depth":3,"next":{"title":"Paxos","level":"1.2.5.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","ref":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","articles":[]},"previous":{"title":"Snapshots","level":"1.2.5.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","ref":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T15:58:14.868Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

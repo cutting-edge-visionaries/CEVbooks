@@ -1,0 +1,822 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>MapReduce · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    Cloud Computing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week01
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+            
+                <a href="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+            
+                    
+                    Basic Fundamentals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2" data-path="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html">
+            
+                <a href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html">
+            
+                    
+                    Introduction to Clouds
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.3" data-path="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html">
+            
+                <a href="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html">
+            
+                    
+                    Clouds and Distributed Systems
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.1.4" data-path="Cloud Computing I - Week01 - 3 - MapReduce.html">
+            
+                <a href="Cloud Computing I - Week01 - 3 - MapReduce.html">
+            
+                    
+                    MapReduce
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week02
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="Cloud Computing I - Week02 - 1 - Gossip.html">
+            
+                <a href="Cloud Computing I - Week02 - 1 - Gossip.html">
+            
+                    
+                    Gossip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.2" data-path="Cloud Computing I - Week02 - 2 - Membership.html">
+            
+                <a href="Cloud Computing I - Week02 - 2 - Membership.html">
+            
+                    
+                    Membership
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.3" data-path="Cloud Computing I - Week02 - 3 - Grids.html">
+            
+                <a href="Cloud Computing I - Week02 - 3 - Grids.html">
+            
+                    
+                    Grids
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week03
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="Cloud Computing I - Week03 - 1 - P2P Systems.html">
+            
+                <a href="Cloud Computing I - Week03 - 1 - P2P Systems.html">
+            
+                    
+                    P2P Systems
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week04
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="Cloud Computing I - Week04 - 1 - Key-Value stores.html">
+            
+                <a href="Cloud Computing I - Week04 - 1 - Key-Value stores.html">
+            
+                    
+                    Key-Value Stores
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
+            
+                <a href="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
+            
+                    
+                    Time & Ordering
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" >
+            
+                <span>
+            
+                    
+                    Cloud Computing - Week05
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1" data-path="Cloud Computing I - Week05 - 1 - Snapshots.html">
+            
+                <a href="Cloud Computing I - Week05 - 1 - Snapshots.html">
+            
+                    
+                    Snapshots
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.2" data-path="Cloud Computing I - Week05 - 2 - Multicast.html">
+            
+                <a href="Cloud Computing I - Week05 - 2 - Multicast.html">
+            
+                    
+                    Multicast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.3" data-path="Cloud Computing I - Week05 - 3 - Paxos.html">
+            
+                <a href="Cloud Computing I - Week05 - 3 - Paxos.html">
+            
+                    
+                    Paxos
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >MapReduce</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="cloud-computing-i---week01---3---mapreduce">Cloud Computing I - Week01 - 3 - MapReduce</h2>
+<h3 id="1-mapreduce-paradigm">1. MapReduce Paradigm</h3>
+<h4 id="what-is-mapreduce">What is MapReduce?</h4>
+<ul>
+<li><code>(map square &apos;(1 2 3 4))</code><ul>
+<li>output: <code>(1 4 9 16)</code></li>
+<li>processes each record sequentially and independently</li>
+</ul>
+</li>
+<li><code>(reduce + &apos;(1 4 9 16))</code><ul>
+<li><code>(+ 16 (+ 9 (+ 4 1)))</code></li>
+<li>output: <code>30</code></li>
+<li>processes set of all records in batches</li>
+</ul>
+</li>
+</ul>
+<h4 id="map">Map</h4>
+<ul>
+<li><em>process individual records to generate intermediate </em>key/value pairs**</li>
+<li><em>e.g.</em> <code>Welcome Everyone Hello Everyone</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Key</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Welcome</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Hello</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>Input &lt;filename, file text&gt;</code></li>
+<li>this can be <em>parallised</em> easily, ex. multiple Map tasks can be run together</li>
+<li><strong>still the final word count is not known,</strong> here Reduce comes into use</li>
+</ul>
+<h4 id="reduce">Reduce</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Key</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Welcome</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Hello</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Reduce doesnt work in parallel but the keys are grouped</li>
+<li>keys are grouped</li>
+<li>Each key assigned to one Reduce</li>
+<li>Parallely process and all the reduce that will give the no of each keys</li>
+<li>hash is used for load balancing</li>
+<li></li>
+</ul>
+<h3 id="2-mapreduce-examples">2. MapReduce Examples</h3>
+<h4 id="applications---1-distributed-grep">Applications - 1 (Distributed Grep)</h4>
+<ul>
+<li>IP : Large set of files</li>
+<li>OP: Lines that match pattern<ul>
+<li>map: <em>emits a line if it matches the supplied patter</em></li>
+<li>reduce: copies the intermediate data to OP</li>
+</ul>
+</li>
+</ul>
+<h4 id="applications---2--reverse-weblink-graph">Applications - 2  (Reverse weblink graph)</h4>
+<ul>
+<li>you have a graph or a portion of it</li>
+<li>IP: Web Graphs: <code>tuples(a,b)</code>, where page a =&gt; page b</li>
+<li>OP: for each web page, list of pages that link to it<ul>
+<li>map: process web log and for each input <code>&lt;source, target&gt;</code>, it outputs <code>&lt;target, source&gt;</code></li>
+<li>reduce: emits <code>&lt;target, list(source)&gt;</code></li>
+<li><em>i.e. the list all the pages targeting to link</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="applications---3--count-of-url-access-freq">Applications - 3  (Count of URL Access freq)</h4>
+<ul>
+<li>IP: log of accessed of URLs, e.g, from the proxy server</li>
+<li>OP: </li>
+</ul>
+<h4 id="applications---4-sort">Applications - 4 (Sort)</h4>
+<h3 id="3-mapreduce-scheduling">3. MapReduce Scheduling</h3>
+<h4 id="programming-map-reduce">Programming Map reduce</h4>
+<ul>
+<li><strong>Externally : for USER</strong><ul>
+<li>write a <code>map</code> program and a <code>reduce</code> program</li>
+<li>Submit Job: wait for result</li>
+<li>Nothing to be known about prallell/distributed programming</li>
+</ul>
+</li>
+<li><strong>Internally:</strong> for the Paradigm and Scheduler <ul>
+<li>Parallelise map</li>
+<li>Transfer data from Map to Reduce</li>
+<li>Parallelise Reduce</li>
+<li>Implement storage for Map inputs, map outputs, reduce inpur, and reduce output</li>
+<li><em>let us assume Reduce doesn&apos;t start before all the map tasks are finished</em></li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h4 id="inside-mapreduce">Inside MapReduce</h4>
+<ul>
+<li>Parallelize Map: (<em>easy</em>) <ul>
+<li>each map task is different from another</li>
+<li>all map output records with same key assigned to same reduce </li>
+</ul>
+</li>
+<li>transfer data from map to reduce:<ul>
+<li>all map outputs records with same key assigned to same reduce task</li>
+<li>use partitionaing function <em>e.g</em> <code>hash(key)%number of reducers</code></li>
+</ul>
+</li>
+<li>Parallelize Reduce: (<em>easy</em>)<ul>
+<li>each reduce task is independent from other</li>
+</ul>
+</li>
+<li>Implement storage from Map input, Map Output, Reduce Input, and Reduce Output<ul>
+<li>Map IP: from <em>distributed file system</em></li>
+<li>Map OP: to local disk (<em>at Map node</em>)<ul>
+<li>uses local file system</li>
+</ul>
+</li>
+<li>Reduce Input: from (<em>multiple</em>) remote disks<ul>
+<li>uses local file systems</li>
+</ul>
+</li>
+<li>Reduce OP: to distributed file system</li>
+</ul>
+</li>
+<li><em>Local file systems:</em> Linux FS etc.</li>
+<li><em>Distributed File Systems:</em> GFS, HDFS etc.</li>
+<li></li>
+</ul>
+<h4 id="internal-working-of-mapreduce">Internal working of MapReduce</h4>
+<ul>
+<li>I have 7 box stored in DFS</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>map tasks</th>
+<th>Servers</th>
+<th>Shuffle Traffic</th>
+<th>outputs are sent to Reduce tasks</th>
+<th>Output fles into DFS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>--M1--</td>
+<td>A</td>
+<td>are</td>
+<td>A</td>
+<td>I</td>
+</tr>
+<tr>
+<td>2</td>
+<td>--M2--</td>
+<td>A</td>
+<td>written</td>
+<td>B</td>
+<td>II</td>
+</tr>
+<tr>
+<td>3</td>
+<td>--M3--</td>
+<td>B</td>
+<td>locally</td>
+<td>B</td>
+<td>II</td>
+</tr>
+<tr>
+<td>4</td>
+<td>--M4--</td>
+<td>B</td>
+<td>at</td>
+<td>C</td>
+<td>III</td>
+</tr>
+<tr>
+<td>5</td>
+<td>--M5--</td>
+<td>B</td>
+<td>these</td>
+<td>A</td>
+<td>I</td>
+</tr>
+<tr>
+<td>6</td>
+<td>--M6--</td>
+<td>C</td>
+<td>servers &amp;</td>
+<td>B</td>
+<td>II</td>
+</tr>
+<tr>
+<td>7</td>
+<td>--M7--</td>
+<td>C</td>
+<td>fetched to remote</td>
+<td>C</td>
+<td>III</td>
+</tr>
+</tbody>
+</table>
+<p><em>Resource Manager assigns maps and reduce to servers</em></p>
+<h4 id="yarn-scheduler-yet-another-resource-negotiator">YARN scheduler (<em>Yet Another Resource Negotiator</em>)</h4>
+<ul>
+<li>resource negotiator of HADOOP</li>
+<li><em>treats each server as the collection of the containers</em><ul>
+<li><code>each container = some CPU + some Memory</code></li>
+</ul>
+</li>
+<li>has 3 components<ul>
+<li><strong>Global Resource Manager</strong> (RM)<ul>
+<li>Scheduling</li>
+</ul>
+</li>
+<li><strong>1 Node Manager per-server</strong> (NM)<ul>
+<li>daemon and server-specific function</li>
+<li>monitors the failures of tasks</li>
+</ul>
+</li>
+<li><strong>1 Application Master per application</strong><ul>
+<li>container negotiation with RM and NMs</li>
+<li>also communicates with NMs for failure</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="yarn-how-a-job-gets-a-container">YARN: how a job gets a container</h4>
+<p><img src="../images/images03_01.png" alt="images03_01"></p>
+<p><em>in this fig. 1) 2 servers 2) 2 jobs</em></p>
+<h3 id="4-map-reduce-fault-tolerance">4. Map Reduce Fault Tolerance</h3>
+<p><br></p>
+<h4 id="fault-tolerance">Fault Tolerance</h4>
+<ul>
+<li><strong>Server Failure</strong><ul>
+<li>NM sends the heartbeats to RM<ul>
+<li><em>if server fails, RM lets all affected AMs know, which then have the responsibility of rescheduling the tasks</em></li>
+</ul>
+</li>
+<li>NM keeps track of each task runnina at its server<ul>
+<li><em>if fails while in progress, mark the task as idle and restart is</em></li>
+</ul>
+</li>
+<li>AM heartbeats to RM<ul>
+<li><em>on failure, RM restarts AM, which then syncs up with its running tasks</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>RM Failure</strong><ul>
+<li><em>use old checkpoints and bring up secondary RM</em></li>
+</ul>
+</li>
+<li>Heartbeats also used piggyback container requests</li>
+</ul>
+<p><br></p>
+<h4 id="slow-servers">Slow Servers</h4>
+<ul>
+<li><strong>Stragglers</strong><ul>
+<li><em>slow machine, more error server, bad disk, network bandwidth etc. could be the reason</em></li>
+<li>Perform backup execution of straggler task<ul>
+<li>Task is considered done when first replica is complete. Called <em>Speculative Execution</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="locality">Locality</h4>
+<ul>
+<li>GFS/HDFS stores 3 replica of each of chunks (<em>e.g. maybe on different racks</em>)</li>
+<li>MapReduce attempts to shchedule a map<ul>
+<li><em>a machine that contains a replica of corresponding ip data</em>, failing that</li>
+<li><em>on the same racks as a machine containing the ip</em>, failing that</li>
+<li><em>anywhere</em></li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Clouds and Distributed Systems">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"MapReduce","level":"1.2.1.4","depth":3,"next":{"title":"Cloud Computing - Week02","level":"1.2.2","depth":2,"ref":"","articles":[{"title":"Gossip","level":"1.2.2.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","ref":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","articles":[]},{"title":"Membership","level":"1.2.2.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","ref":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","articles":[]},{"title":"Grids","level":"1.2.2.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 3 - Grids.md","ref":"CloudComputing/Cloud Computing I - Week02 - 3 - Grids.md","articles":[]}]},"previous":{"title":"Clouds and Distributed Systems","level":"1.2.1.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","ref":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T15:58:14.868Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
