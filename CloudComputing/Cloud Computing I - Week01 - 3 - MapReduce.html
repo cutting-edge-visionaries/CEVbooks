@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Snapshots · GitBook</title>
+        <title>MapReduce · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Cloud Computing I - Week05 - 2 - Multicast.html" />
     
+    <link rel="prev" href="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html" />
     
 
     </head>
@@ -167,7 +167,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.4" data-path="Cloud Computing I - Week01 - 3 - MapReduce.html">
+        <li class="chapter active" data-level="1.2.1.4" data-path="Cloud Computing I - Week01 - 3 - MapReduce.html">
             
                 <a href="Cloud Computing I - Week01 - 3 - MapReduce.html">
             
@@ -334,7 +334,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.5.1" data-path="Cloud Computing I - Week05 - 1 - Snapshots.html">
+        <li class="chapter " data-level="1.2.5.1" data-path="Cloud Computing I - Week05 - 1 - Snapshots.html">
             
                 <a href="Cloud Computing I - Week05 - 1 - Snapshots.html">
             
@@ -413,7 +413,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Snapshots</a>
+        <a href=".." >MapReduce</a>
     </h1>
 </div>
 
@@ -428,154 +428,315 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="snapshots">Snapshots</h2>
+                                <h2 id="cloud-computing-i---week01---3---mapreduce">Cloud Computing I - Week01 - 3 - MapReduce</h2>
+<h3 id="1-mapreduce-paradigm">1. MapReduce Paradigm</h3>
+<h4 id="what-is-mapreduce">What is MapReduce?</h4>
 <ul>
-<li><strong><a href="http://research.google.com/archive/chubby.html" target="_blank">Google Chubby</a></strong></li>
-<li><strong><a href="http://zookeeper.apache.org/" target="_blank">Apache Zookeeper</a></strong></li>
-</ul>
-<hr>
-<h3 id="what-is-global-snapshot">What is Global Snapshot?</h3>
-<ul>
-<li>suppose on cloud an app is running on multiple servers</li>
-<li>Servers handling concurrent events and interacting with each other</li>
-<li>Uses of Global Snap<ul>
-<li><em>Checkpointing</em>: on failure the distributed app can be restarted</li>
-<li><em>Garbage collection of objects:</em> Garbage are the objects to the servers that dont have any other objects(in any server) with pointers to them</li>
-<li><em>Deadlock Detection:</em> useful in DB txns systems</li>
-<li><em>Termination of computation</em> for Batch computing systems, <em>e.g. Folding@Home, SETI@Home</em></li>
+<li><code>(map square &apos;(1 2 3 4))</code><ul>
+<li>output: <code>(1 4 9 16)</code></li>
+<li>processes each record sequentially and independently</li>
 </ul>
 </li>
-<li><strong>Global Snapshot == Global State</strong><ul>
-<li>Individual state of each (<em>process in the Distributed System + Communication channel in the distributed system</em>)</li>
+<li><code>(reduce + &apos;(1 4 9 16))</code><ul>
+<li><code>(+ 16 (+ 9 (+ 4 1)))</code></li>
+<li>output: <code>30</code></li>
+<li>processes set of all records in batches</li>
 </ul>
 </li>
-<li>Capture the <strong>Instantaneous</strong> state of each process</li>
-<li>and the instantaneous <em>state</em> of each communication channel, i.e., <em>messages</em> in transit on the channels</li>
 </ul>
-<h4 id="obvious-solution">Obvious solution</h4>
+<h4 id="map">Map</h4>
 <ul>
-<li>sync the clocks of all the processes</li>
-<li>ask all of the processes to record their states at known time <em>t</em></li>
-<li>but, Time sync is not good, it has errors</li>
-<li>Thus, sync is not required, CAUSALITY is enough!</li>
-<li>State-to-state movement obeys causality</li>
+<li><em>process individual records to generate intermediate </em>key/value pairs**</li>
+<li><em>e.g.</em> <code>Welcome Everyone Hello Everyone</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Key</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Welcome</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Hello</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>Input &lt;filename, file text&gt;</code></li>
+<li>this can be <em>parallised</em> easily, ex. multiple Map tasks can be run together</li>
+<li><strong>still the final word count is not known,</strong> here Reduce comes into use</li>
+</ul>
+<h4 id="reduce">Reduce</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Key</strong></th>
+<th><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Welcome</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Everyone</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Hello</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Reduce doesnt work in parallel but the keys are grouped</li>
+<li>keys are grouped</li>
+<li>Each key assigned to one Reduce</li>
+<li>Parallely process and all the reduce that will give the no of each keys</li>
+<li>hash is used for load balancing</li>
 <li></li>
 </ul>
-<hr>
-<h3 id="global-snapshot-algorithm">Global Snapshot Algorithm</h3>
+<h3 id="2-mapreduce-examples">2. MapReduce Examples</h3>
+<h4 id="applications---1-distributed-grep">Applications - 1 (Distributed Grep)</h4>
 <ul>
-<li><strong><em>System Model</em></strong><ul>
-<li><code>N</code> processes in the system</li>
-<li>There are uni-directional communication channels between each ordered process pair: <ul>
-<li><code>P&lt;sub&gt;j&lt;/sub&gt; &#x2192; P&lt;sub&gt;i&lt;/sub&gt;</code></li>
-</ul>
-</li>
-<li>Communication channels are FIFO-ordered<ul>
-<li>First in First out</li>
-</ul>
-</li>
-<li>No failure</li>
-<li>All msgs arrive intact, and are not duplicated <ul>
-<li><em>other papers later relaxed some of these assumptions</em></li>
+<li>IP : Large set of files</li>
+<li>OP: Lines that match pattern<ul>
+<li>map: <em>emits a line if it matches the supplied patter</em></li>
+<li>reduce: copies the intermediate data to OP</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><strong>Requirements</strong><ul>
-<li>Snaps should not interfere with any apps in any way</li>
-<li>Each process should be able to record its own state<ul>
-<li><em>Process state</em>: App-defined state or, in the case: <em>its heap, registers, program counter, code etc. (essentially the core dump)</em></li>
-</ul>
-</li>
-<li>Global state is collected in a distributed manner</li>
-<li>Any process may initiate the snaps usually distinguished by using different IDs</li>
-</ul>
-</li>
-</ul>
-<h4 id="chandy-lamport-global-snapshot-algo">Chandy-Lamport Global SnapShot Algo</h4>
+<h4 id="applications---2--reverse-weblink-graph">Applications - 2  (Reverse weblink graph)</h4>
 <ul>
-<li><strong>Initiator</strong> P<sub>i</sub> records its own state</li>
-<li>Initiator Process creates special msgs called &quot;MARKER&quot; msgs<ul>
-<li>Not an app msg, does not interfere with app msgs</li>
-<li>but when sent on channel, they are ordered with app msgs</li>
+<li>you have a graph or a portion of it</li>
+<li>IP: Web Graphs: <code>tuples(a,b)</code>, where page a =&gt; page b</li>
+<li>OP: for each web page, list of pages that link to it<ul>
+<li>map: process web log and for each input <code>&lt;source, target&gt;</code>, it outputs <code>&lt;target, source&gt;</code></li>
+<li>reduce: emits <code>&lt;target, list(source)&gt;</code></li>
+<li><em>i.e. the list all the pages targeting to link</em></li>
 </ul>
 </li>
-<li>for  <code>j= 1 to N</code> except <code>i</code> <ul>
-<li>P<sub>i</sub> sends out MARKER msg on outgoing channel C<sub>ij</sub></li>
-<li><code>(N-1)</code> channels</li>
+</ul>
+<h4 id="applications---3--count-of-url-access-freq">Applications - 3  (Count of URL Access freq)</h4>
+<ul>
+<li>IP: log of accessed of URLs, e.g, from the proxy server</li>
+<li>OP: </li>
+</ul>
+<h4 id="applications---4-sort">Applications - 4 (Sort)</h4>
+<h3 id="3-mapreduce-scheduling">3. MapReduce Scheduling</h3>
+<h4 id="programming-map-reduce">Programming Map reduce</h4>
+<ul>
+<li><strong>Externally : for USER</strong><ul>
+<li>write a <code>map</code> program and a <code>reduce</code> program</li>
+<li>Submit Job: wait for result</li>
+<li>Nothing to be known about prallell/distributed programming</li>
 </ul>
 </li>
-<li><em>Starts recording</em> the incoming msgs on each of the incoming channels at <ul>
-<li>P<sub>i</sub> : C<sub>ji</sub> (for <code>j = 1 to N</code> except <code>i</code>)</li>
+<li><strong>Internally:</strong> for the Paradigm and Scheduler <ul>
+<li>Parallelise map</li>
+<li>Transfer data from Map to Reduce</li>
+<li>Parallelise Reduce</li>
+<li>Implement storage for Map inputs, map outputs, reduce inpur, and reduce output</li>
+<li><em>let us assume Reduce doesn&apos;t start before all the map tasks are finished</em></li>
 <li></li>
 </ul>
 </li>
-<li><strong>When process</strong>  P<sub>i</sub> <strong>receives the MARKER</strong><ul>
-<li>if (this is the first MARKER P<sub>i</sub> is seeing)<ul>
-<li>P<sub>i</sub> records its own state first</li>
-<li>Marks the state of channel C<sub>ij</sub> as &quot;empty&quot;</li>
-<li>for <code>j = 1 to N</code> except <code>i</code><ul>
-<li>P<sub>i</sub> send out a MARKER msg on outgoing channel C<sub>ij</sub></li>
 </ul>
-</li>
-<li><em>Starts Recording</em> the incoming msgs on each of the incoming channels  P<sub>i</sub> : C<sub>ji</sub> (for <code>j=1 to N</code> except <code>i</code> and <code>k</code>)</li>
-</ul>
-</li>
-<li>else <code>||</code> already seen a MARKER msgs<ul>
-<li>MARK the state of channel  C<sub>ki</sub> as all the msgs that have arrived on it <em>since recording was turned on for</em> C<sub>ki</sub></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>*The algo terminates when</strong><ul>
-<li>All processes have received a MARKER<ul>
-<li>to record their own state </li>
-</ul>
-</li>
-<li>All processes have received a MARKER on all the <code>(N-1)</code> incoming channels at each<pre><code>  - To record the state of all channels
-</code></pre></li>
-</ul>
-</li>
-</ul>
-<p><strong><em>Then, if needed, a central server collects all these partial state pieces to obtain the full global snapshot</em></strong></p>
-<hr>
-<h3 id="consistent-cuts">Consistent Cuts</h3>
+<h4 id="inside-mapreduce">Inside MapReduce</h4>
 <ul>
-<li><strong>CUT</strong><ul>
-<li>time frontier at each process and at each channel</li>
-<li>Events at the process/channel that happen before the cut are <strong><em>&quot;in the cut&quot;</em></strong> </li>
-<li>after the cut are <strong><em>&quot;out the cut:</em></strong></li>
+<li>Parallelize Map: (<em>easy</em>) <ul>
+<li>each map task is different from another</li>
+<li>all map output records with same key assigned to same reduce </li>
 </ul>
 </li>
-<li><strong>Consistent Cut</strong><ul>
-<li>a cut obeys causality</li>
-<li>a cut C is a consistent cut if and only if:<ul>
-<li>for (each pair of events e, f in the system)<ul>
-<li>Such that event e is in the cut C, and if <strong>f &#x2192; e</strong> (f happens before e)<ul>
-<li>THEN: event f is also in the cut C</li>
+<li>transfer data from map to reduce:<ul>
+<li>all map outputs records with same key assigned to same reduce task</li>
+<li>use partitionaing function <em>e.g</em> <code>hash(key)%number of reducers</code></li>
 </ul>
 </li>
+<li>Parallelize Reduce: (<em>easy</em>)<ul>
+<li>each reduce task is independent from other</li>
 </ul>
 </li>
+<li>Implement storage from Map input, Map Output, Reduce Input, and Reduce Output<ul>
+<li>Map IP: from <em>distributed file system</em></li>
+<li>Map OP: to local disk (<em>at Map node</em>)<ul>
+<li>uses local file system</li>
 </ul>
 </li>
+<li>Reduce Input: from (<em>multiple</em>) remote disks<ul>
+<li>uses local file systems</li>
 </ul>
 </li>
+<li>Reduce OP: to distributed file system</li>
 </ul>
-<p><img src="../images/images05_01_01.png" alt="images05_01_01.png"></p>
-<p><em>&quot;Any run of the Chandy-Lamport Global Snapshot algorithm creates a consistent cut&quot;</em></p>
-<hr>
-<h3 id="safety-and-liveness">Safety and Liveness</h3>
+</li>
+<li><em>Local file systems:</em> Linux FS etc.</li>
+<li><em>Distributed File Systems:</em> GFS, HDFS etc.</li>
+<li></li>
+</ul>
+<h4 id="internal-working-of-mapreduce">Internal working of MapReduce</h4>
 <ul>
-<li>Liveness: Something GOOD will happen eventually</li>
-<li>Safety:  Something BAD will never happen in the system</li>
-<li>Chandy Lamport can be used to detect global properties that are stable<ul>
-<li>STABLE = once true, stays true forever afterwards (<em>i.e. for infinite time afterwards</em>)<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMzM5NzY2OTMsMTk5NDk0NTMwOSwxNT
-cyMzE0MzQzLDExNDM1OTgxNTksMjE0NDc5ODk3LC0xNzgzNzg3
-NjMyLC0xNDUwOTc5NDYzLDE4MDI3Mjk0NTAsLTUzMjQ1ODY4Ni
-wtNzgwMjgxOTk1XX0=
---></li>
+<li>I have 7 box stored in DFS</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>map tasks</th>
+<th>Servers</th>
+<th>Shuffle Traffic</th>
+<th>outputs are sent to Reduce tasks</th>
+<th>Output fles into DFS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>--M1--</td>
+<td>A</td>
+<td>are</td>
+<td>A</td>
+<td>I</td>
+</tr>
+<tr>
+<td>2</td>
+<td>--M2--</td>
+<td>A</td>
+<td>written</td>
+<td>B</td>
+<td>II</td>
+</tr>
+<tr>
+<td>3</td>
+<td>--M3--</td>
+<td>B</td>
+<td>locally</td>
+<td>B</td>
+<td>II</td>
+</tr>
+<tr>
+<td>4</td>
+<td>--M4--</td>
+<td>B</td>
+<td>at</td>
+<td>C</td>
+<td>III</td>
+</tr>
+<tr>
+<td>5</td>
+<td>--M5--</td>
+<td>B</td>
+<td>these</td>
+<td>A</td>
+<td>I</td>
+</tr>
+<tr>
+<td>6</td>
+<td>--M6--</td>
+<td>C</td>
+<td>servers &amp;</td>
+<td>B</td>
+<td>II</td>
+</tr>
+<tr>
+<td>7</td>
+<td>--M7--</td>
+<td>C</td>
+<td>fetched to remote</td>
+<td>C</td>
+<td>III</td>
+</tr>
+</tbody>
+</table>
+<p><em>Resource Manager assigns maps and reduce to servers</em></p>
+<h4 id="yarn-scheduler-yet-another-resource-negotiator">YARN scheduler (<em>Yet Another Resource Negotiator</em>)</h4>
+<ul>
+<li>resource negotiator of HADOOP</li>
+<li><em>treats each server as the collection of the containers</em><ul>
+<li><code>each container = some CPU + some Memory</code></li>
+</ul>
+</li>
+<li>has 3 components<ul>
+<li><strong>Global Resource Manager</strong> (RM)<ul>
+<li>Scheduling</li>
+</ul>
+</li>
+<li><strong>1 Node Manager per-server</strong> (NM)<ul>
+<li>daemon and server-specific function</li>
+<li>monitors the failures of tasks</li>
+</ul>
+</li>
+<li><strong>1 Application Master per application</strong><ul>
+<li>container negotiation with RM and NMs</li>
+<li>also communicates with NMs for failure</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="yarn-how-a-job-gets-a-container">YARN: how a job gets a container</h4>
+<p><img src="../images/images03_01.png" alt="images03_01"></p>
+<p><em>in this fig. 1) 2 servers 2) 2 jobs</em></p>
+<h3 id="4-map-reduce-fault-tolerance">4. Map Reduce Fault Tolerance</h3>
+<p><br></p>
+<h4 id="fault-tolerance">Fault Tolerance</h4>
+<ul>
+<li><strong>Server Failure</strong><ul>
+<li>NM sends the heartbeats to RM<ul>
+<li><em>if server fails, RM lets all affected AMs know, which then have the responsibility of rescheduling the tasks</em></li>
+</ul>
+</li>
+<li>NM keeps track of each task runnina at its server<ul>
+<li><em>if fails while in progress, mark the task as idle and restart is</em></li>
+</ul>
+</li>
+<li>AM heartbeats to RM<ul>
+<li><em>on failure, RM restarts AM, which then syncs up with its running tasks</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>RM Failure</strong><ul>
+<li><em>use old checkpoints and bring up secondary RM</em></li>
+</ul>
+</li>
+<li>Heartbeats also used piggyback container requests</li>
+</ul>
+<p><br></p>
+<h4 id="slow-servers">Slow Servers</h4>
+<ul>
+<li><strong>Stragglers</strong><ul>
+<li><em>slow machine, more error server, bad disk, network bandwidth etc. could be the reason</em></li>
+<li>Perform backup execution of straggler task<ul>
+<li>Task is considered done when first replica is complete. Called <em>Speculative Execution</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="locality">Locality</h4>
+<ul>
+<li>GFS/HDFS stores 3 replica of each of chunks (<em>e.g. maybe on different racks</em>)</li>
+<li>MapReduce attempts to shchedule a map<ul>
+<li><em>a machine that contains a replica of corresponding ip data</em>, failing that</li>
+<li><em>on the same racks as a machine containing the ip</em>, failing that</li>
+<li><em>anywhere</em></li>
 </ul>
 </li>
 </ul>
@@ -606,10 +767,10 @@ wtNzgwMjgxOTk1XX0=
 
             
                 
-                
-                <a href="Cloud Computing I - Week05 - 2 - Multicast.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Multicast">
-                    <i class="fa fa-angle-right"></i>
+                <a href="Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Clouds and Distributed Systems">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -618,7 +779,7 @@ wtNzgwMjgxOTk1XX0=
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Snapshots","level":"1.2.5.1","depth":3,"next":{"title":"Multicast","level":"1.2.5.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","ref":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","articles":[]},"previous":{"title":"Cloud Computing - Week05","level":"1.2.5","depth":2,"ref":"","articles":[{"title":"Snapshots","level":"1.2.5.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","ref":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","articles":[]},{"title":"Multicast","level":"1.2.5.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","ref":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","articles":[]},{"title":"Paxos","level":"1.2.5.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","ref":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:13:07.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MapReduce","level":"1.2.1.4","depth":3,"next":{"title":"Cloud Computing - Week02","level":"1.2.2","depth":2,"ref":"","articles":[{"title":"Gossip","level":"1.2.2.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","ref":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","articles":[]},{"title":"Membership","level":"1.2.2.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","ref":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","articles":[]},{"title":"Grids","level":"1.2.2.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 3 - Grids.md","ref":"CloudComputing/Cloud Computing I - Week02 - 3 - Grids.md","articles":[]}]},"previous":{"title":"Clouds and Distributed Systems","level":"1.2.1.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","ref":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:09:10.173Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -626,10 +787,6 @@ wtNzgwMjgxOTk1XX0=
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

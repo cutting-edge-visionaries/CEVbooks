@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Basic Fundamentals · GitBook</title>
+        <title>Gossip · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" />
+    <link rel="next" href="Cloud Computing I - Week02 - 2 - Membership.html" />
     
     
 
@@ -128,7 +128,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+        <li class="chapter " data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
                 <a href="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
@@ -199,7 +199,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.2.1" data-path="Cloud Computing I - Week02 - 1 - Gossip.html">
+        <li class="chapter active" data-level="1.2.2.1" data-path="Cloud Computing I - Week02 - 1 - Gossip.html">
             
                 <a href="Cloud Computing I - Week02 - 1 - Gossip.html">
             
@@ -413,7 +413,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Basic Fundamentals</a>
+        <a href=".." >Gossip</a>
     </h1>
 </div>
 
@@ -428,96 +428,171 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="cloud-computing-i---week01---1---basic-fundamentals">Cloud Computing I - Week01 - 1 - Basic Fundamentals</h2>
-<h3 id="orientation-towards-cloud-computing-concepts-some-basic-computer-science-fundamentals">Orientation Towards Cloud Computing Concepts: Some Basic Computer Science Fundamentals</h3>
-<h5 id="i-basic-ds">I. Basic DS</h5>
-<ol>
-<li>Queue<ul>
-<li>head, tail, dequeue</li>
-</ul>
-</li>
-<li>Stack<ul>
-<li>Push, Pop, Top</li>
-</ul>
-</li>
-</ol>
-<h5 id="ii-process--a-program-in-action">II. Process : A Program in Action</h5>
+                                <h2 id="cloud-computing-i---week02---1---gossip">Cloud Computing I - Week02 - 1 - Gossip</h2>
+<h3 id="multicast-problem">Multicast Problem</h3>
+<h4 id="multicast">Multicast</h4>
 <ul>
-<li>basically a program in action</li>
-<li>a process  <strong>P1</strong>  is given as</li>
+<li>suppose one node in a group of nodes wants to send the packets to a groups of nodes, it is called as the the Multicast.</li>
+<li>Extreme form of multicast is known as <em>Broadcast</em>, where one node sends packets to every other node in the network</li>
 </ul>
-<pre><code>graph LR
-A[main()] -- calls --&gt; B[int f1()] --&gt; C[int f2()]
-</code></pre><ul>
-<li>a snapshot of a process contain<ul>
-<li>code, program counter, current status of stack/heap &amp; registers and few other elements</li>
-</ul>
-</li>
-</ul>
-<h5 id="iii-computer-architecture">III. Computer Architecture</h5>
-<p>CPU</p>
-<p>Registers</p>
-<p>Cache</p>
-<p>Memory</p>
-<p>Disk</p>
+<h4 id="fault-tolerance-and-scalability">Fault Tolerance and Scalability</h4>
 <ul>
-<li>Accessing registers &gt; cache &gt;&gt; Memory &gt;&gt; disk</li>
-<li>Prog gets compiled to low level machine instructions.</li>
-<li>CPU loads inst. in batches into memory</li>
-<li>on execution CPU loads data into memory</li>
+<li>for this <em>Multicast Protocols</em> are used, which should be<ul>
+<li>Fault tolerant</li>
+<li>scalable</li>
 </ul>
-<h5 id="iv-big-o-notation">IV. Big O() Notation</h5>
+</li>
+<li>the protocol sits at the application level and not on the Hardware levels, in routers and switches</li>
+</ul>
+<h4 id="centralized">Centralized</h4>
 <ul>
-<li>describes the upper bound on behaviour on algorithms, as some vars are scaled to infinity</li>
-<li>&quot;Worst case&quot; perfomance</li>
-<li><strong>rules:</strong><ul>
-<li><ol>
-<li>Different steps get added<ul>
-<li><em>for e.g. O(a) and O(b) are within same function. Then, for the function</em> <code>BigO = O(a+b)</code></li>
+<li>sends <strong>UDP/TCP</strong> packets</li>
+<li>have sender and a list of receivers</li>
+<li>it is prone to fault tolerant</li>
+<li>it also increases the <em>latency</em></li>
 </ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Drop the Constants<ul>
-<li><em>e.g. O(N) and O(N) are within same function. Then, for the function</em> <code>BigO = O(N)</code> <em>and not</em> <code>O(2N)</code></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Differene i/p =&gt; Different Vars<ul>
-<li><em>e.g. in O(N) doesn&apos;t mean the length of the array. What you want to describe is instead</em> <code>O(a*b)</code> <em>in case</em> array a <em>and</em> array b <em>are used</em></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Drop non-dominate terms<ul>
-<li><em>e.g. a function has O(N) and O(N^2), so here N^2 dominates, so, N ones is dropped</em></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="v-basic-probability">V. Basic Probability</h5>
+<h4 id="tree-based">Tree-Based</h4>
 <ul>
-<li>set, subset, event, </li>
+<li>such protocols are developed</li>
+<li><em>e.g. App level protocols like RMTP, TRAM, TMTP</em> etc.</li>
+<li>when node failures happens, nodes may not receive packets for a while</li>
+<li>easy troubleshooting</li>
 </ul>
-<h5 id="vi-dns">Vi. DNS</h5>
+<h4 id="tree---based-multicast-protocols">Tree - Based Multicast Protocols</h4>
 <ul>
-<li>name resolutions, IP address, CDN(content distribution network)</li>
+<li>use spanning tree to disseminate multicasts</li>
+<li>use either <em>ACKs</em> or <em>NAKs</em> (negative acknowledgements) to repair multicasts not received</li>
+<li><em>e.g.</em> SRM(Scalable Reliable Multicast)<ul>
+<li>uses NAKs</li>
+<li>but adds random delays, and uses exponential backoffs(<em>waits everytime for double the time</em>) to avoid NAK storms</li>
 </ul>
-<h5 id="vii-graphs">VII. Graphs</h5>
+</li>
+<li>RMTP (Reliable Multicast Transport Protocol)<ul>
+<li>uses ACKs</li>
+<li>sometimes there is ACK storms</li>
+<li>for this ACKs only sent to designates receivers, which then re-transmit missing multicasts</li>
+</ul>
+</li>
+<li><strong><em>These protocols still cause an O(N) ACK/NAK overhead</em></strong></li>
+</ul>
+<hr>
+<h3 id="the-gossip-protocol">The Gossip Protocol</h3>
+<h4 id="a-third-approach">A third approach</h4>
 <ul>
-<li>network graphs, <!--stackedit_data:
-eyJwcm9wZXJ0aWVzIjoiZXh0ZW5zaW9uczpcbiAgcHJlc2V0Oi
-AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
---></li>
+<li>supposethere is one multicast sender, which chooses <em>b</em> random nodes to send the message to, periodically, say 5 seconds</li>
+<li>it uses the connectionless protocol, <em>UDP</em></li>
+<li>the messages are called <em>Gossip Messages</em></li>
+<li>other nodes do same after receiving multicast, periodically, say 5 seconds</li>
+<li>so there is good amount of wastage as well</li>
 </ul>
-
+<h4 id="epidemic">Epidemic</h4>
+<ul>
+<li>When a node receives a message, it is said to be <em>infected</em> by the message</li>
+<li>others are called <em>uninfected</em></li>
+</ul>
+<h4 id="push-vs-pull">PUSH vs PULL</h4>
+<ul>
+<li>this is <em>PUSH</em> gossip protocol<ul>
+<li>once a node receives multicast you start gossiping</li>
+<li>in case of multiple messages, <ul>
+<li>gossip one msg at a time, or a subset of msgs</li>
+<li>you may also gossip the recently received ones</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>other is <em>PULL</em> gossip protocol<ul>
+<li>reverse of PUSH protocol</li>
+<li>queries regarding the messages is periodically is sent to few of the close nodes asking for any messages</li>
+</ul>
+</li>
+<li>HYBRID</li>
+</ul>
+<hr>
+<h3 id="gossip-analysis">Gossip Analysis</h3>
+<ul>
+<li>lightweight even in large groups</li>
+<li>spreads a multicast quickly</li>
+<li>is highly fault tolerant</li>
+</ul>
+<h4 id="ananlysis">Ananlysis</h4>
+<ul>
+<li>from old maths <em>Epidemiology</em></li>
+<li>classical version has <em>(n+1)</em> individuals</li>
+<li>contact rate between any individual pair is $\beta$</li>
+<li>say, <ul>
+<li><em>x</em> : infected , <em>y</em> : uninfected</li>
+<li>then, <code>x0 = n</code>, <code>y0 = 1</code>, all the time <code>x + y = n + 1</code></li>
+</ul>
+</li>
+<li>continous time process
+<img src="../images/images02_01_01.png" alt="images02_01_01"></li>
+</ul>
+<h4 id="epidemic-multicast-analysis">Epidemic Multicast Analysis</h4>
+<p><img src="../images/images02_01_02.png" alt="images02_01_02"></p>
+<ul>
+<li>set <code>c</code>, <code>b</code> to be small no. independent of <code>n</code><ul>
+<li>Low latency</li>
+<li>reliability</li>
+<li>lightweight
+<img src="../images/images02_01_03.png" alt="images02_01_03"></li>
+</ul>
+</li>
+</ul>
+<p><em>Note: <code>log(n)</code> is very small thus, almost constant</em></p>
+<h4 id="fault-tolerance">Fault Tolerance</h4>
+<ul>
+<li>Packet Loss<ul>
+<li>analyse with <code>b -&gt; (b/2)</code></li>
+<li>to achieve same reliability as <code>0%</code> packet loss, takes <em>twice</em> as many rounds</li>
+</ul>
+</li>
+<li>Node Failure<ul>
+<li>50% of nodes fail: analyse with <code>n -&gt; n/2</code> and <code>b -&gt; (b/2)</code>-</li>
+</ul>
+</li>
+<li>it is <strong>possible</strong> that the gossip dies out quickly, but it is <strong>improbable</strong><ul>
+<li>once a few nodes are infected, with high probability, the epidemic will not die out</li>
+<li>so the analysis we saw in the prev. portion is actually bahviour with high probability</li>
+</ul>
+</li>
+</ul>
+<h4 id="pull-gossipt">PULL Gossipt</h4>
+<ul>
+<li>in all forms of gossip, it takes <code>O(log(N))</code> rounds before about <code>N/2</code> gets the gossip</li>
+<li>PULL faster than PUSH</li>
+<li><em>k = no. of gossip pulls per round per process</em></li>
+</ul>
+<p><img src="../images/images02_01_04.png" alt="images02_01_04"></p>
+<p><strong><em>in HYBRID, in first half PUSH is used, in second half PULL is used</em></strong></p>
+<h4 id="topology-aware-gossip">Topology-Aware Gossip</h4>
+<ul>
+<li>Gossip protocols are not Topology aware</li>
+<li>so they get trafficed when it comes to hierarchical topology</li>
+<li>suppose gossip need to go from one subnet to other</li>
+<li>since each node is selected at random, <strong><em>n/2</em></strong> will go to another subnet</li>
+<li>probability of going <strong>over network</strong> is 1/n<sub>i</sub></li>
+<li>prob of going within the network is 1 - (1/n<sub>i</sub>)</li>
+<li>initially rouuter load is O(N), which goes down to O(1), when all the nodes are once infected</li>
+<li>Dissemination TIme : <code>O(Log(N))</code></li>
+</ul>
+<blockquote>
+<p>In a datacenter topology with top of the rack switches talking to one core switch, there are 2 racks, each with N/2 nodes from the multicast group. The nodes execute push gossip. If each node picks a gossip target outside its rack with probability (1/N), and gossip targets are selected uniformly at random from the target subgroup, the time to disseminate a gossip is:</p>
+<ul>
+<li>[x] O(log(N))</li>
+<li>[ ] O(N)</li>
+<li>[ ] O(log(log(N)))</li>
+</ul>
+</blockquote>
+<p><em>Check if your analysis is correct.</em></p>
+<p><img src="../images/images02_01_05.png" alt="images02_01_05"></p>
+<hr>
+<h3 id="gossip-implementation">Gossip Implementation</h3>
+<h4 id="nntp-inter-server-protocol">NNTP Inter Server Protocol</h4>
+<p><img src="../images/images02_01_06.png" alt="images02_01_06"></p>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTc2MzU5MDUwMl19
+-->
                                 
                                 </section>
                             
@@ -545,7 +620,7 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
             
                 
                 
-                <a href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Introduction to Clouds">
+                <a href="Cloud Computing I - Week02 - 2 - Membership.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Membership">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -556,7 +631,7 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"next":{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},"previous":{"title":"Cloud Computing - Week01","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","ref":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","articles":[]},{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},{"title":"Clouds and Distributed Systems","level":"1.2.1.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","ref":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","articles":[]},{"title":"MapReduce","level":"1.2.1.4","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","ref":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:13:07.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gossip","level":"1.2.2.1","depth":3,"next":{"title":"Membership","level":"1.2.2.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","ref":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","articles":[]},"previous":{"title":"Cloud Computing - Week02","level":"1.2.2","depth":2,"ref":"","articles":[{"title":"Gossip","level":"1.2.2.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","ref":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","articles":[]},{"title":"Membership","level":"1.2.2.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","ref":"CloudComputing/Cloud Computing I - Week02 - 2 - Membership.md","articles":[]},{"title":"Grids","level":"1.2.2.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week02 - 3 - Grids.md","ref":"CloudComputing/Cloud Computing I - Week02 - 3 - Grids.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week02 - 1 - Gossip.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:09:10.173Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -564,10 +639,6 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

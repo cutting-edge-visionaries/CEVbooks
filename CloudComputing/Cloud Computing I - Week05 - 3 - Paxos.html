@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Basic Fundamentals · GitBook</title>
+        <title>Paxos · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" />
     
+    <link rel="prev" href="Cloud Computing I - Week05 - 2 - Multicast.html" />
     
 
     </head>
@@ -128,7 +128,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+        <li class="chapter " data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
                 <a href="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
@@ -360,7 +360,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.5.3" data-path="Cloud Computing I - Week05 - 3 - Paxos.html">
+        <li class="chapter active" data-level="1.2.5.3" data-path="Cloud Computing I - Week05 - 3 - Paxos.html">
             
                 <a href="Cloud Computing I - Week05 - 3 - Paxos.html">
             
@@ -413,7 +413,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Basic Fundamentals</a>
+        <a href=".." >Paxos</a>
     </h1>
 </div>
 
@@ -428,93 +428,180 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="cloud-computing-i---week01---1---basic-fundamentals">Cloud Computing I - Week01 - 1 - Basic Fundamentals</h2>
-<h3 id="orientation-towards-cloud-computing-concepts-some-basic-computer-science-fundamentals">Orientation Towards Cloud Computing Concepts: Some Basic Computer Science Fundamentals</h3>
-<h5 id="i-basic-ds">I. Basic DS</h5>
-<ol>
-<li>Queue<ul>
-<li>head, tail, dequeue</li>
-</ul>
-</li>
-<li>Stack<ul>
-<li>Push, Pop, Top</li>
-</ul>
-</li>
-</ol>
-<h5 id="ii-process--a-program-in-action">II. Process : A Program in Action</h5>
+                                <h2 id="paxos">Paxos</h2>
+<h3 id="the-consensus-problem">The consensus Problem</h3>
 <ul>
-<li>basically a program in action</li>
-<li>a process  <strong>P1</strong>  is given as</li>
-</ul>
-<pre><code>graph LR
-A[main()] -- calls --&gt; B[int f1()] --&gt; C[int f2()]
-</code></pre><ul>
-<li>a snapshot of a process contain<ul>
-<li>code, program counter, current status of stack/heap &amp; registers and few other elements</li>
+<li>consensus is impossible to solve under certain sytems</li>
+<li>A group of servers attempting to do<ul>
+<li>Reliable Multicast</li>
+<li>Membership/Failure Detection (list of each other)</li>
+<li>Leader Election</li>
+<li>Mutual Exclusion of Critical Resources</li>
 </ul>
 </li>
 </ul>
-<h5 id="iii-computer-architecture">III. Computer Architecture</h5>
-<p>CPU</p>
-<p>Registers</p>
-<p>Cache</p>
-<p>Memory</p>
-<p>Disk</p>
+<h4 id="what-is-consensus">What is Consensus?</h4>
+<p>Formal problem statements</p>
 <ul>
-<li>Accessing registers &gt; cache &gt;&gt; Memory &gt;&gt; disk</li>
-<li>Prog gets compiled to low level machine instructions.</li>
-<li>CPU loads inst. in batches into memory</li>
-<li>on execution CPU loads data into memory</li>
+<li>N processes</li>
+<li>Each process p has <ul>
+<li>I/p variable Xp : initially 0 or 1</li>
+<li>o/p variable Yp : initially b (can be changed only once)</li>
 </ul>
-<h5 id="iv-big-o-notation">IV. Big O() Notation</h5>
-<ul>
-<li>describes the upper bound on behaviour on algorithms, as some vars are scaled to infinity</li>
-<li>&quot;Worst case&quot; perfomance</li>
-<li><strong>rules:</strong><ul>
+</li>
+<li><em>Consensus Problem:</em> design a protocol so that at the end, either:<ul>
 <li><ol>
-<li>Different steps get added<ul>
-<li><em>for e.g. O(a) and O(b) are within same function. Then, for the function</em> <code>BigO = O(a+b)</code></li>
-</ul>
-</li>
+<li>All processes set their o/p variables to 0 (all-0&apos;s)</li>
 </ol>
 </li>
 <li><ol>
-<li>Drop the Constants<ul>
-<li><em>e.g. O(N) and O(N) are within same function. Then, for the function</em> <code>BigO = O(N)</code> <em>and not</em> <code>O(2N)</code></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Differene i/p =&gt; Different Vars<ul>
-<li><em>e.g. in O(N) doesn&apos;t mean the length of the array. What you want to describe is instead</em> <code>O(a*b)</code> <em>in case</em> array a <em>and</em> array b <em>are used</em></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Drop non-dominate terms<ul>
-<li><em>e.g. a function has O(N) and O(N^2), so here N^2 dominates, so, N ones is dropped</em></li>
-</ul>
-</li>
+<li>or all processes set their o/p variables to 1 (all-1&apos;s)</li>
 </ol>
 </li>
 </ul>
 </li>
+<li>Other Constraints<ul>
+<li>Validity</li>
+<li>Integrity</li>
+<li>Non-Triviality: at least one initial system state that leads to each of the all-0&apos;s or all-1&apos;s outcomes</li>
 </ul>
-<h5 id="v-basic-probability">V. Basic Probability</h5>
-<ul>
-<li>set, subset, event, </li>
+</li>
+<li><strong>2 different models of distributed systems</strong> (<em>understand this stuff for any prob given to you</em>)<ul>
+<li>Synchronous &amp; Asynchronous</li>
+<li><strong><em>Sync. Distributed Systems</em></strong><ul>
+<li>Each msg is received witihin bounded time </li>
+<li>Drift of each process&apos; loca clock has a known bound</li>
+<li>Each step in a process takes lb &lt; time &lt; ub</li>
+<li>e.g. a collection of processors connected by a communication bus, e.g. a CRAY supercomputer or a multicore machine</li>
+<li><code>Consensus is solvable</code></li>
 </ul>
-<h5 id="vi-dns">Vi. DNS</h5>
-<ul>
-<li>name resolutions, IP address, CDN(content distribution network)</li>
+</li>
+<li><strong><em>Async Distributed Systems</em></strong><ul>
+<li>No bounds on process execution</li>
+<li>The drift rate of a clock is arbitrary</li>
+<li>No bounds on msg transmission delays</li>
+<li>e.g. Internet, ad-hoc, sensor networks etc</li>
+<li><strong><em>More difficult to tackle</em></strong></li>
+<li>if protocol works for async, it will also work for sync.  systems</li>
+<li><code>Consensus is impossible to solve</code></li>
 </ul>
-<h5 id="vii-graphs">VII. Graphs</h5>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="consensus-in-synchronous-systems">Consensus in Synchronous Systems</h3>
 <ul>
-<li>network graphs, <!--stackedit_data:
-eyJwcm9wZXJ0aWVzIjoiZXh0ZW5zaW9uczpcbiAgcHJlc2V0Oi
-AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
+<li>First know what is system model</li>
+<li><em>Sync system</em> has bounds on <ul>
+<li>message delays</li>
+<li>upper bound on clock drift rates</li>
+<li>Max time for each process step</li>
+</ul>
+</li>
+<li>For a system at most <em>f</em> processes crashing <ul>
+<li>all processes are synced and operate in &quot;rounds&quot; of time</li>
+<li>the algo proceeds <em>f+1</em> rounds (with timeout), using reliable communication to all members</li>
+<li>Values<sup>r</sup><sub>i</sub> <em>the set of proposed value known to</em> p<sub>i</sub> <em>at the beginning of rounds</em> r </li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/images05_03_01.png" alt="images05_03_01.png"></p>
+<h4 id="why-does-the-algorithms-work">Why does the Algorithms work?</h4>
+<ul>
+<li>After <code>f + 1</code> rounds, all non-faulty processes would have received the same set of Values. Proof by contradiction</li>
+<li>Assume that two non-faulty processes, say p<sub>i</sub> and p<sub>j</sub>, differ in their final set of values (i.e., after <code>f + 1</code> rounds)</li>
+<li>Assume that p<sub>i</sub> possesses a value <em>v</em> that p<sub>j</sub> does not possess.</li>
+</ul>
+<p><img src="../images/images05_03_02.png" alt="images05_03_02.png"></p>
+<hr>
+<h3 id="paxos-simply">Paxos, Simply</h3>
+<ul>
+<li>used by Zookeeper (Yahoo!), Google Chubby</li>
+<li>invented by Leslie Lamport</li>
+<li>FLP still applies : Paxos is not guaranteed to reach the consensus</li>
+</ul>
+<h4 id="how-does-it-work">how does it work</h4>
+<ul>
+<li>it has rounds, with unique Ballot id</li>
+<li>it is async<ul>
+<li>i.e. Time sync is not required</li>
+<li>if you are in round <em>j</em> and hear a message from round <em>j+1</em> , <strong>abort everything</strong> and move over to round <em>j+1</em></li>
+<li>use timeouts</li>
+</ul>
+</li>
+<li><strong>3 Phases</strong> <em>Election, Bill &amp; Law</em></li>
+<li><strong>Phase I: ELECTION</strong><ul>
+<li>potential leader chooses (highest) unique ballot id</li>
+<li>PL needs to get votes from others</li>
+<li>so they send out the ballot id to everyone</li>
+<li>the other members vote for the highet ballot id they see</li>
+<li>if PL sees the higher ballot id then it refuses to be the leader</li>
+<li>When PL reaches the quorom of votes it becomes leader</li>
+<li><em>Error</em> <ul>
+<li>it is possible nonne reaches majority</li>
+<li>in corner cases it is possible the tht multiple leader are selected</li>
+</ul>
+</li>
+<li>the ballot ids are also logged</li>
+<li>in case of no leader, next round is started</li>
+</ul>
+</li>
+<li><strong>Phase II: BILL</strong><ul>
+<li>leader sends a proposed value to all</li>
+<li>if it knows the value from the prev round, it uses that value</li>
+<li>if no value is decided in the prev round, it can use its own decided value</li>
+<li>Recipients logs in the disk</li>
+</ul>
+</li>
+<li><strong>Phase |||:LAW</strong><ul>
+<li>when Leader reaches the quorom </li>
+<li>it tells it to everyone</li>
+</ul>
+</li>
+</ul>
+<h4 id="which-is-the-point-of-noreturn">Which is the point of NoReturn?</h4>
+<ul>
+<li>when the consensus is reached in the system?</li>
+<li>it is reached at the middle of the BILL phase, where the processes have logged on it</li>
+<li>processes dnt know it yet, but it is decided and cannot be changed now</li>
+<li>even if the leader fails, the rounds are continued until a value is reached</li>
+</ul>
+<h4 id="how-safety-works">How Safety works?</h4>
+<ul>
+<li><strong>Proof</strong><ul>
+<li>PL waits for majority of OKs in phase I</li>
+<li>At least one will contain v&apos; (bcz 2 quoroms always intersect)</li>
+<li>it will chose to send out v&apos; in Phase 2</li>
+</ul>
+</li>
+</ul>
+<h4 id="what-could-go-wrong">What could go wrong?</h4>
+<ul>
+<li>Process fails &amp; Majority does not include it<ul>
+<li>when process restarts, it tries to look at the log</li>
+</ul>
+</li>
+<li>Leader Fails<ul>
+<li>another round started</li>
+</ul>
+</li>
+<li>Msgs dropped<ul>
+<li>another round started</li>
+</ul>
+</li>
+<li>New round can be started at any point of time</li>
+<li>and <strong>EVENTUALLY</strong> it may never end thus <strong><em>EVENTUAL LIVENESS</em></strong></li>
+<li></li>
+</ul>
+<hr>
+<h3 id="the-flp-proof-optional">The FLP Proof [Optional]</h3>
+<ul>
+<li><em>Key to the Proof</em>: It is impossible to distinguish a failed process from one that is just very very (very) slow. Hence the rest of the alive processses may stay ambivalent (forever) when it comes to deciding.<!--stackedit_data:
+eyJoaXN0b3J5IjpbOTcxNDA4NTc4LDMzNjA0MzIzMywtNDkyMz
+E5MTMxLC0yMDI1NDAzMzg3LDE1OTA5OTc1MTAsLTUxODcwMTI2
+MCwtMjY3MDQ4NDg0LDEzNDgyMjk0NzAsMjEwMzc5NzgyMCwtMz
+Y5Mzc2MzMzXX0=
 --></li>
 </ul>
 
@@ -544,10 +631,10 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
 
             
                 
-                
-                <a href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Introduction to Clouds">
-                    <i class="fa fa-angle-right"></i>
+                <a href="Cloud Computing I - Week05 - 2 - Multicast.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Multicast">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -556,7 +643,7 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"next":{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},"previous":{"title":"Cloud Computing - Week01","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","ref":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","articles":[]},{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},{"title":"Clouds and Distributed Systems","level":"1.2.1.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","ref":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","articles":[]},{"title":"MapReduce","level":"1.2.1.4","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","ref":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:13:07.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Paxos","level":"1.2.5.3","depth":3,"previous":{"title":"Multicast","level":"1.2.5.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","ref":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","mtime":"2020-07-10T07:55:54.160Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:09:10.173Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -564,10 +651,6 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

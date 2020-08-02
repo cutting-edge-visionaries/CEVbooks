@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Basic Fundamentals · GitBook</title>
+        <title>Snapshots · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" />
+    <link rel="next" href="Cloud Computing I - Week05 - 2 - Multicast.html" />
     
     
 
@@ -128,7 +128,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+        <li class="chapter " data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
                 <a href="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
@@ -334,7 +334,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.5.1" data-path="Cloud Computing I - Week05 - 1 - Snapshots.html">
+        <li class="chapter active" data-level="1.2.5.1" data-path="Cloud Computing I - Week05 - 1 - Snapshots.html">
             
                 <a href="Cloud Computing I - Week05 - 1 - Snapshots.html">
             
@@ -413,7 +413,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Basic Fundamentals</a>
+        <a href=".." >Snapshots</a>
     </h1>
 </div>
 
@@ -428,94 +428,156 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="cloud-computing-i---week01---1---basic-fundamentals">Cloud Computing I - Week01 - 1 - Basic Fundamentals</h2>
-<h3 id="orientation-towards-cloud-computing-concepts-some-basic-computer-science-fundamentals">Orientation Towards Cloud Computing Concepts: Some Basic Computer Science Fundamentals</h3>
-<h5 id="i-basic-ds">I. Basic DS</h5>
-<ol>
-<li>Queue<ul>
-<li>head, tail, dequeue</li>
-</ul>
-</li>
-<li>Stack<ul>
-<li>Push, Pop, Top</li>
-</ul>
-</li>
-</ol>
-<h5 id="ii-process--a-program-in-action">II. Process : A Program in Action</h5>
+                                <h2 id="snapshots">Snapshots</h2>
 <ul>
-<li>basically a program in action</li>
-<li>a process  <strong>P1</strong>  is given as</li>
+<li><strong><a href="http://research.google.com/archive/chubby.html" target="_blank">Google Chubby</a></strong></li>
+<li><strong><a href="http://zookeeper.apache.org/" target="_blank">Apache Zookeeper</a></strong></li>
 </ul>
-<pre><code>graph LR
-A[main()] -- calls --&gt; B[int f1()] --&gt; C[int f2()]
-</code></pre><ul>
-<li>a snapshot of a process contain<ul>
-<li>code, program counter, current status of stack/heap &amp; registers and few other elements</li>
-</ul>
-</li>
-</ul>
-<h5 id="iii-computer-architecture">III. Computer Architecture</h5>
-<p>CPU</p>
-<p>Registers</p>
-<p>Cache</p>
-<p>Memory</p>
-<p>Disk</p>
+<hr>
+<h3 id="what-is-global-snapshot">What is Global Snapshot?</h3>
 <ul>
-<li>Accessing registers &gt; cache &gt;&gt; Memory &gt;&gt; disk</li>
-<li>Prog gets compiled to low level machine instructions.</li>
-<li>CPU loads inst. in batches into memory</li>
-<li>on execution CPU loads data into memory</li>
+<li>suppose on cloud an app is running on multiple servers</li>
+<li>Servers handling concurrent events and interacting with each other</li>
+<li>Uses of Global Snap<ul>
+<li><em>Checkpointing</em>: on failure the distributed app can be restarted</li>
+<li><em>Garbage collection of objects:</em> Garbage are the objects to the servers that dont have any other objects(in any server) with pointers to them</li>
+<li><em>Deadlock Detection:</em> useful in DB txns systems</li>
+<li><em>Termination of computation</em> for Batch computing systems, <em>e.g. Folding@Home, SETI@Home</em></li>
 </ul>
-<h5 id="iv-big-o-notation">IV. Big O() Notation</h5>
+</li>
+<li><strong>Global Snapshot == Global State</strong><ul>
+<li>Individual state of each (<em>process in the Distributed System + Communication channel in the distributed system</em>)</li>
+</ul>
+</li>
+<li>Capture the <strong>Instantaneous</strong> state of each process</li>
+<li>and the instantaneous <em>state</em> of each communication channel, i.e., <em>messages</em> in transit on the channels</li>
+</ul>
+<h4 id="obvious-solution">Obvious solution</h4>
 <ul>
-<li>describes the upper bound on behaviour on algorithms, as some vars are scaled to infinity</li>
-<li>&quot;Worst case&quot; perfomance</li>
-<li><strong>rules:</strong><ul>
-<li><ol>
-<li>Different steps get added<ul>
-<li><em>for e.g. O(a) and O(b) are within same function. Then, for the function</em> <code>BigO = O(a+b)</code></li>
+<li>sync the clocks of all the processes</li>
+<li>ask all of the processes to record their states at known time <em>t</em></li>
+<li>but, Time sync is not good, it has errors</li>
+<li>Thus, sync is not required, CAUSALITY is enough!</li>
+<li>State-to-state movement obeys causality</li>
+<li></li>
 </ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Drop the Constants<ul>
-<li><em>e.g. O(N) and O(N) are within same function. Then, for the function</em> <code>BigO = O(N)</code> <em>and not</em> <code>O(2N)</code></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Differene i/p =&gt; Different Vars<ul>
-<li><em>e.g. in O(N) doesn&apos;t mean the length of the array. What you want to describe is instead</em> <code>O(a*b)</code> <em>in case</em> array a <em>and</em> array b <em>are used</em></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Drop non-dominate terms<ul>
-<li><em>e.g. a function has O(N) and O(N^2), so here N^2 dominates, so, N ones is dropped</em></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="v-basic-probability">V. Basic Probability</h5>
+<hr>
+<h3 id="global-snapshot-algorithm">Global Snapshot Algorithm</h3>
 <ul>
-<li>set, subset, event, </li>
+<li><strong><em>System Model</em></strong><ul>
+<li><code>N</code> processes in the system</li>
+<li>There are uni-directional communication channels between each ordered process pair: <ul>
+<li><code>P&lt;sub&gt;j&lt;/sub&gt; &#x2192; P&lt;sub&gt;i&lt;/sub&gt;</code></li>
 </ul>
-<h5 id="vi-dns">Vi. DNS</h5>
-<ul>
-<li>name resolutions, IP address, CDN(content distribution network)</li>
+</li>
+<li>Communication channels are FIFO-ordered<ul>
+<li>First in First out</li>
 </ul>
-<h5 id="vii-graphs">VII. Graphs</h5>
+</li>
+<li>No failure</li>
+<li>All msgs arrive intact, and are not duplicated <ul>
+<li><em>other papers later relaxed some of these assumptions</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Requirements</strong><ul>
+<li>Snaps should not interfere with any apps in any way</li>
+<li>Each process should be able to record its own state<ul>
+<li><em>Process state</em>: App-defined state or, in the case: <em>its heap, registers, program counter, code etc. (essentially the core dump)</em></li>
+</ul>
+</li>
+<li>Global state is collected in a distributed manner</li>
+<li>Any process may initiate the snaps usually distinguished by using different IDs</li>
+</ul>
+</li>
+</ul>
+<h4 id="chandy-lamport-global-snapshot-algo">Chandy-Lamport Global SnapShot Algo</h4>
 <ul>
-<li>network graphs, <!--stackedit_data:
-eyJwcm9wZXJ0aWVzIjoiZXh0ZW5zaW9uczpcbiAgcHJlc2V0Oi
-AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
+<li><strong>Initiator</strong> P<sub>i</sub> records its own state</li>
+<li>Initiator Process creates special msgs called &quot;MARKER&quot; msgs<ul>
+<li>Not an app msg, does not interfere with app msgs</li>
+<li>but when sent on channel, they are ordered with app msgs</li>
+</ul>
+</li>
+<li>for  <code>j= 1 to N</code> except <code>i</code> <ul>
+<li>P<sub>i</sub> sends out MARKER msg on outgoing channel C<sub>ij</sub></li>
+<li><code>(N-1)</code> channels</li>
+</ul>
+</li>
+<li><em>Starts recording</em> the incoming msgs on each of the incoming channels at <ul>
+<li>P<sub>i</sub> : C<sub>ji</sub> (for <code>j = 1 to N</code> except <code>i</code>)</li>
+<li></li>
+</ul>
+</li>
+<li><strong>When process</strong>  P<sub>i</sub> <strong>receives the MARKER</strong><ul>
+<li>if (this is the first MARKER P<sub>i</sub> is seeing)<ul>
+<li>P<sub>i</sub> records its own state first</li>
+<li>Marks the state of channel C<sub>ij</sub> as &quot;empty&quot;</li>
+<li>for <code>j = 1 to N</code> except <code>i</code><ul>
+<li>P<sub>i</sub> send out a MARKER msg on outgoing channel C<sub>ij</sub></li>
+</ul>
+</li>
+<li><em>Starts Recording</em> the incoming msgs on each of the incoming channels  P<sub>i</sub> : C<sub>ji</sub> (for <code>j=1 to N</code> except <code>i</code> and <code>k</code>)</li>
+</ul>
+</li>
+<li>else <code>||</code> already seen a MARKER msgs<ul>
+<li>MARK the state of channel  C<sub>ki</sub> as all the msgs that have arrived on it <em>since recording was turned on for</em> C<sub>ki</sub></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>*The algo terminates when</strong><ul>
+<li>All processes have received a MARKER<ul>
+<li>to record their own state </li>
+</ul>
+</li>
+<li>All processes have received a MARKER on all the <code>(N-1)</code> incoming channels at each<pre><code>  - To record the state of all channels
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Then, if needed, a central server collects all these partial state pieces to obtain the full global snapshot</em></strong></p>
+<hr>
+<h3 id="consistent-cuts">Consistent Cuts</h3>
+<ul>
+<li><strong>CUT</strong><ul>
+<li>time frontier at each process and at each channel</li>
+<li>Events at the process/channel that happen before the cut are <strong><em>&quot;in the cut&quot;</em></strong> </li>
+<li>after the cut are <strong><em>&quot;out the cut:</em></strong></li>
+</ul>
+</li>
+<li><strong>Consistent Cut</strong><ul>
+<li>a cut obeys causality</li>
+<li>a cut C is a consistent cut if and only if:<ul>
+<li>for (each pair of events e, f in the system)<ul>
+<li>Such that event e is in the cut C, and if <strong>f &#x2192; e</strong> (f happens before e)<ul>
+<li>THEN: event f is also in the cut C</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/images05_01_01.png" alt="images05_01_01.png"></p>
+<p><em>&quot;Any run of the Chandy-Lamport Global Snapshot algorithm creates a consistent cut&quot;</em></p>
+<hr>
+<h3 id="safety-and-liveness">Safety and Liveness</h3>
+<ul>
+<li>Liveness: Something GOOD will happen eventually</li>
+<li>Safety:  Something BAD will never happen in the system</li>
+<li>Chandy Lamport can be used to detect global properties that are stable<ul>
+<li>STABLE = once true, stays true forever afterwards (<em>i.e. for infinite time afterwards</em>)<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEzMzM5NzY2OTMsMTk5NDk0NTMwOSwxNT
+cyMzE0MzQzLDExNDM1OTgxNTksMjE0NDc5ODk3LC0xNzgzNzg3
+NjMyLC0xNDUwOTc5NDYzLDE4MDI3Mjk0NTAsLTUzMjQ1ODY4Ni
+wtNzgwMjgxOTk1XX0=
 --></li>
+</ul>
+</li>
 </ul>
 
                                 
@@ -545,7 +607,7 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
             
                 
                 
-                <a href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Introduction to Clouds">
+                <a href="Cloud Computing I - Week05 - 2 - Multicast.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Multicast">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -556,7 +618,7 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"next":{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},"previous":{"title":"Cloud Computing - Week01","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","ref":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","articles":[]},{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},{"title":"Clouds and Distributed Systems","level":"1.2.1.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","ref":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","articles":[]},{"title":"MapReduce","level":"1.2.1.4","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","ref":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:13:07.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Snapshots","level":"1.2.5.1","depth":3,"next":{"title":"Multicast","level":"1.2.5.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","ref":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","articles":[]},"previous":{"title":"Cloud Computing - Week05","level":"1.2.5","depth":2,"ref":"","articles":[{"title":"Snapshots","level":"1.2.5.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","ref":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","articles":[]},{"title":"Multicast","level":"1.2.5.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","ref":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","articles":[]},{"title":"Paxos","level":"1.2.5.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","ref":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:09:10.173Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -564,10 +626,6 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

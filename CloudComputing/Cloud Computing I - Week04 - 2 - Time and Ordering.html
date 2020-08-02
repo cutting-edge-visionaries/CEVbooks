@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Basic Fundamentals · GitBook</title>
+        <title>Time & Ordering · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" />
     
+    <link rel="prev" href="Cloud Computing I - Week04 - 1 - Key-Value stores.html" />
     
 
     </head>
@@ -128,7 +128,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
+        <li class="chapter " data-level="1.2.1.1" data-path="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
                 <a href="Cloud Computing I - Week01 - 0 - Basic Fundamentals.html">
             
@@ -302,7 +302,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4.2" data-path="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
+        <li class="chapter active" data-level="1.2.4.2" data-path="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
             
                 <a href="Cloud Computing I - Week04 - 2 - Time and Ordering.html">
             
@@ -413,7 +413,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Basic Fundamentals</a>
+        <a href=".." >Time & Ordering</a>
     </h1>
 </div>
 
@@ -428,96 +428,245 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="cloud-computing-i---week01---1---basic-fundamentals">Cloud Computing I - Week01 - 1 - Basic Fundamentals</h2>
-<h3 id="orientation-towards-cloud-computing-concepts-some-basic-computer-science-fundamentals">Orientation Towards Cloud Computing Concepts: Some Basic Computer Science Fundamentals</h3>
-<h5 id="i-basic-ds">I. Basic DS</h5>
-<ol>
-<li>Queue<ul>
-<li>head, tail, dequeue</li>
-</ul>
-</li>
-<li>Stack<ul>
-<li>Push, Pop, Top</li>
-</ul>
-</li>
-</ol>
-<h5 id="ii-process--a-program-in-action">II. Process : A Program in Action</h5>
+                                <h2 id="cloud-computing-i---week04---2---time-and-ordering">Cloud Computing I - Week04 - 2 - Time and Ordering</h2>
+<h3 id="introduction-and-basics">Introduction and Basics</h3>
+<h4 id="why-is-it-challenging">Why is it challenging?</h4>
 <ul>
-<li>basically a program in action</li>
-<li>a process  <strong>P1</strong>  is given as</li>
+<li>End hosts in cloud<ul>
+<li>each have thier own clocks</li>
+<li>Unlike CPUs within one server or workstations which share a ssytem clock</li>
 </ul>
-<pre><code>graph LR
-A[main()] -- calls --&gt; B[int f1()] --&gt; C[int f2()]
-</code></pre><ul>
-<li>a snapshot of a process contain<ul>
-<li>code, program counter, current status of stack/heap &amp; registers and few other elements</li>
+</li>
+<li>Processes in internet based systems follow an asyn system model<ul>
+<li>No bounds on<ul>
+<li>message delays</li>
+<li>processing delays</li>
+</ul>
+</li>
+<li>unlike multi processor (or parallel) systems which follow a sync system model</li>
 </ul>
 </li>
 </ul>
-<h5 id="iii-computer-architecture">III. Computer Architecture</h5>
-<p>CPU</p>
-<p>Registers</p>
-<p>Cache</p>
-<p>Memory</p>
-<p>Disk</p>
+<h4 id="clock-skew-vs-clock-drift">Clock SKew vs Clock Drift</h4>
 <ul>
-<li>Accessing registers &gt; cache &gt;&gt; Memory &gt;&gt; disk</li>
-<li>Prog gets compiled to low level machine instructions.</li>
-<li>CPU loads inst. in batches into memory</li>
-<li>on execution CPU loads data into memory</li>
+<li>Each process has its own clock</li>
+<li>When comparing 2 clocks at 2 processes:<ul>
+<li><strong>Clock Skew</strong> relative difference in clock values of 2 processes<ul>
+<li>like distance between 2 vehicles on a road</li>
 </ul>
-<h5 id="iv-big-o-notation">IV. Big O() Notation</h5>
+</li>
+<li><strong>Clock Drift</strong> rela. diff in clock <em>freq</em> of two processes<ul>
+<li>like diff in speeds of 2 vehicles</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>a non zero clock skew implies clocks are not synced</li>
+<li>a non zero clock drift causes skew to increase (eventually)</li>
+</ul>
+<h4 id="how-often-to-sync">How often to Sync?</h4>
 <ul>
-<li>describes the upper bound on behaviour on algorithms, as some vars are scaled to infinity</li>
-<li>&quot;Worst case&quot; perfomance</li>
-<li><strong>rules:</strong><ul>
-<li><ol>
-<li>Different steps get added<ul>
-<li><em>for e.g. O(a) and O(b) are within same function. Then, for the function</em> <code>BigO = O(a+b)</code></li>
+<li><strong>Max drift rate</strong> of a clock</li>
+<li>absolute MDR is defined relative to Coordinated Universal Time (UTC).<ul>
+<li>MDR of a process depends on the env</li>
 </ul>
 </li>
-</ol>
-</li>
-<li><ol>
-<li>Drop the Constants<ul>
-<li><em>e.g. O(N) and O(N) are within same function. Then, for the function</em> <code>BigO = O(N)</code> <em>and not</em> <code>O(2N)</code></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Differene i/p =&gt; Different Vars<ul>
-<li><em>e.g. in O(N) doesn&apos;t mean the length of the array. What you want to describe is instead</em> <code>O(a*b)</code> <em>in case</em> array a <em>and</em> array b <em>are used</em></li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol>
-<li>Drop non-dominate terms<ul>
-<li><em>e.g. a function has O(N) and O(N^2), so here N^2 dominates, so, N ones is dropped</em></li>
-</ul>
-</li>
-</ol>
-</li>
+<li>MDR btw 2 clocks with similar MDR is <code>2*MDR</code></li>
+<li>Given a max acceptable skew M btw any pair of clocks, need to sync at least once every: <code>M/(2*MDR)</code> time units<ul>
+<li>Since time = dist/Speed</li>
 </ul>
 </li>
 </ul>
-<h5 id="v-basic-probability">V. Basic Probability</h5>
+<hr>
+<h3 id="cristians-algorithm">Cristian&apos;s Algorithm</h3>
 <ul>
-<li>set, subset, event, </li>
+<li>for external sync if clocks</li>
+<li>all proesses P sync with a time server S</li>
+<li><strong>Wrong</strong><ul>
+<li>by the time response msg is received at P, time has moved on</li>
+<li>P&apos;s time set to <code>t</code> is inaccurate.</li>
+<li>Inaccuracy is a function of msg latencies</li>
+<li>Since latencies unbounded in an async system the inaccuracy cannot be bounded</li>
 </ul>
-<h5 id="vi-dns">Vi. DNS</h5>
+</li>
+<li><strong>Cristian&apos;s algo</strong><ul>
+<li>it measures ROUND TRIP TIME, and knows the error</li>
+<li>suppose message transfer latencies are P -&gt; S min1 and S -&gt; P  min2</li>
+<li>The Actual time at P when it receives the response is between <code>[t+min2, t+RTT-min1]</code></li>
+<li><strong>P sets its time to halfwat through this interval</strong><ul>
+<li>To: t + (RTT + min1 - min1) / 2</li>
+</ul>
+</li>
+<li>Error is at most ( RTT - min2 - min1) / 2<ul>
+<li>Bounded!</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="gotchas">Gotchas</h4>
 <ul>
-<li>name resolutions, IP address, CDN(content distribution network)</li>
+<li>only allowed to increase clock balue but <strong>should never decrease clock value</strong><ul>
+<li>may violate ordering of events within the same process</li>
 </ul>
-<h5 id="vii-graphs">VII. Graphs</h5>
+</li>
+<li>Allowed to increase or decrease speed of Clock</li>
+<li>If error is too high, take multiple readings and average them</li>
+</ul>
+<hr>
+<h3 id="ntp">NTP</h3>
 <ul>
-<li>network graphs, <!--stackedit_data:
-eyJwcm9wZXJ0aWVzIjoiZXh0ZW5zaW9uczpcbiAgcHJlc2V0Oi
-AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
---></li>
+<li>Network Time Protocol</li>
+<li>Each Client = Leaf of the Tree</li>
+<li>Each node syncs with its tree parent</li>
 </ul>
-
+<table>
+<thead>
+<tr>
+<th>Child</th>
+<th></th>
+<th>Parent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>--- Let&apos;s start the protocol --&gt;&gt;</td>
+<td></td>
+</tr>
+<tr>
+<td>Msg 1 recv time <code>tr1</code></td>
+<td>&lt;&lt;-- Message 1 --</td>
+<td>Msg 1 send time <code>ts1</code></td>
+</tr>
+<tr>
+<td>msg 2 send time <code>ts2</code></td>
+<td>-- Message 2 --&gt;&gt;</td>
+<td>msg 2 rec time <code>tr2</code></td>
+</tr>
+<tr>
+<td></td>
+<td><code>ts1</code> , <code>tr2</code></td>
+<td>Time</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Offset <code>o = (tr1 - tr2 + ts2 -ts1)/2</code></li>
+<li>let&apos;s calculate the error </li>
+<li>Suppose real offset is oreal<ul>
+<li>child is ahead of parent by oreal </li>
+<li>Parent is ahead of child by -oreal</li>
+</ul>
+</li>
+<li>Suppose one-way latency of message 1 is L1 (L2 for msg 2)</li>
+<li>No one knows L1 or L2</li>
+<li>Then <ul>
+<li><code>tr1 = ts1 + L1 + oreal</code></li>
+<li><code>tr2 = ts2 + L2 - oreal</code></li>
+</ul>
+</li>
+<li>on substracting <ul>
+<li><code>oreal = (tr1 - tr2 + ts2 -ts1)/2 + (L2 - L1)/2</code></li>
+<li><code>oreal = o + (L2 - L1)/2</code></li>
+<li><code>|oreal - o| &lt; |(L2 - L1)/2| &lt; |(L2 + L1)/2|</code></li>
+</ul>
+</li>
+<li>thus, the error is bounded by the round-trip-time</li>
+<li>We still have a no zero error</li>
+<li>we just cant seem to get rid of the error<ul>
+<li>Cant as long as the msg latencies are non zero</li>
+</ul>
+</li>
+<li>There are methos where we can work without syncing the clock</li>
+<li></li>
+</ul>
+<hr>
+<h3 id="lamport-timestamps">Lamport Timestamps</h3>
+<ul>
+<li>causality is necessary, i.e. one event leads to other</li>
+<li>used by almost all distributed systems </li>
+</ul>
+<h4 id="logical-or-lamport-ordering">Logical or Lamport Ordering</h4>
+<ul>
+<li>define a logical relation <em>Happens-Before</em> (denoted as &#x2192; ) among pairs of events</li>
+<li>Three rules<ul>
+<li>On the same process <em>a &#x2192; b</em>, if <em>time(a) &lt; time(b)</em> [using local clock]</li>
+<li>if P1 sends m to P2 : <em>send(m) &#x2192; receive(m)</em></li>
+<li>(Transitivity) If <em>a &#x2192; b</em> and <em>b &#x2192; c</em> then <em>a &#x2192; c</em></li>
+</ul>
+</li>
+<li>Creates a &quot;partial order&quot; among events<ul>
+<li>Not all events related to each other via &#x2192;</li>
+</ul>
+</li>
+</ul>
+<h4 id="in-practice">In practice</h4>
+<ul>
+<li>Rules<ul>
+<li>each process uses a local counter (clock) which is an integer<ul>
+<li>initial value of counter is zero</li>
+<li>A process increments its counter when a <em>send</em> or an <em>instruction</em> happens at it. The counter is assigned to the event as its timestamp.</li>
+<li><em>A send(message)</em> event carries its timestamp</li>
+<li>For <em>a receive(message)</em> event the counter is updated by <ul>
+<li><em>max(local clock, message timestamp) + 1</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>we&apos;ll say that with this method the casality is followed</li>
+<li>concurrent events, no causal paths</li>
+<li>Lamport timestamps not guaranteed to be ordered or unequal for <em>concurrent event</em></li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="little-confusions-in-identifyinf-concurrent-events">little confusions in identifyinf concurrent events</h2>
+<hr>
+<h3 id="vector-clocks">Vector Clocks</h3>
+<ul>
+<li>Used in key value stores like Riak</li>
+<li>Each process uses a vector of integer clocks</li>
+<li>suppose there are N processes in the group <code>1...N</code></li>
+<li>Each vector has N elements</li>
+<li>Process <em>I maintains vector</em> <code>V&lt;sub&gt;i&lt;/sub&gt;[1...N]</code></li>
+<li><em>j</em> th element of vector clock at process <em>i</em> , <code>V&lt;sub&gt;i&lt;/sub&gt;[j]</code> , is <em>i</em>&apos;s knowledge of latest events at process <em>j</em></li>
+</ul>
+<h4 id="updating-the-timestamps">updating the timestamps</h4>
+<p><img src="../images/images04_02_01.png" alt="images04_02_01.png"></p>
+<p><img src="../images/images04_02_02.png" alt="images04_02_02.png"></p>
+<p><img src="../images/images04_02_03.png" alt="images04_02_03.png"></p>
+<table>
+<thead>
+<tr>
+<th>Lamport Timestamps</th>
+<th>Vector Timestamps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Int clocks assigned to eventts</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Obeys Causality</td>
+<td>Obey Causality</td>
+</tr>
+<tr>
+<td>Cannot distinguish concurrent events</td>
+<td>By using more space, can also identify concurrent events</td>
+</tr>
+</tbody>
+</table>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTEwNjQxNjkyNiwtMTIzMzk1MDUxNywtMT
+U4MzU2MzE4OSwtMTM4ODA5NjUxMCwtMTQwNTMyNzg2NSwtNjgw
+NzAwOTM4LC0xMDcyMTI4NDEwLDEyMDExNTY5MTgsLTExODEwOD
+ExMTYsMzkzMjYxOTc2LC05OTQ3ODQxMTMsLTEyODI4NDc0NDEs
+LTgxNjE3NDI3NiwtOTgyMjExNDIwLC0xOTc0MDIxODcwLDM5MT
+U3MTk0NSwxMTgyMDc3NDgwLC03NDY4OTYwODhdfQ==
+-->
                                 
                                 </section>
                             
@@ -544,10 +693,10 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
 
             
                 
-                
-                <a href="Cloud Computing I - Week01 - 1 - Introduction to Clouds.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Introduction to Clouds">
-                    <i class="fa fa-angle-right"></i>
+                <a href="Cloud Computing I - Week04 - 1 - Key-Value stores.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Key-Value Stores">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -556,7 +705,7 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"next":{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},"previous":{"title":"Cloud Computing - Week01","level":"1.2.1","depth":2,"ref":"","articles":[{"title":"Basic Fundamentals","level":"1.2.1.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","ref":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","articles":[]},{"title":"Introduction to Clouds","level":"1.2.1.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","ref":"CloudComputing/Cloud Computing I - Week01 - 1 - Introduction to Clouds.md","articles":[]},{"title":"Clouds and Distributed Systems","level":"1.2.1.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","ref":"CloudComputing/Cloud Computing I - Week01 - 2 - Clouds are Distributed Systems.md","articles":[]},{"title":"MapReduce","level":"1.2.1.4","depth":3,"path":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","ref":"CloudComputing/Cloud Computing I - Week01 - 3 - MapReduce.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:13:07.364Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Time & Ordering","level":"1.2.4.2","depth":3,"next":{"title":"Cloud Computing - Week05","level":"1.2.5","depth":2,"ref":"","articles":[{"title":"Snapshots","level":"1.2.5.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","ref":"CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md","articles":[]},{"title":"Multicast","level":"1.2.5.2","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","ref":"CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md","articles":[]},{"title":"Paxos","level":"1.2.5.3","depth":3,"path":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","ref":"CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md","articles":[]}]},"previous":{"title":"Key-Value Stores","level":"1.2.4.1","depth":3,"path":"CloudComputing/Cloud Computing I - Week04 - 1 - Key-Value stores.md","ref":"CloudComputing/Cloud Computing I - Week04 - 1 - Key-Value stores.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CloudComputing/Cloud Computing I - Week04 - 2 - Time and Ordering.md","mtime":"2020-07-10T07:55:54.156Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-02T16:09:10.173Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -564,10 +713,6 @@ AnJ1xuIiwiaGlzdG9yeSI6WzEwMTYyOTkxOTldfQ==
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
