@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [Resume essentials](standalone_files/resume.md)
 * Cloud Computing
 	* Cloud Computing - Week01
 		* [Basic Fundamentals](CloudComputing/Cloud Computing I - Week01 - 0 - Basic Fundamentals.md)
@@ -22,4 +23,4 @@
 		* [Snapshots](CloudComputing/Cloud Computing I - Week05 - 1 - Snapshots.md)
 		* [Multicast](CloudComputing/Cloud Computing I - Week05 - 2 - Multicast.md)
 		* [Paxos](CloudComputing/Cloud Computing I - Week05 - 3 - Paxos.md)
-		
+
