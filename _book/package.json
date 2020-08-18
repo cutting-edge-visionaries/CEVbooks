@@ -1,0 +1,21 @@
+{
+  "name": "cevbooks",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cutting-edge-visionaries/CEVbooks.git"
+  },
+  "author": "Aman Pandey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cutting-edge-visionaries/CEVbooks/issues"
+  },
+  "homepage": "https://github.com/cutting-edge-visionaries/CEVbooks#readme"
+}
